@@ -14,8 +14,8 @@ import (
 	"github.com/air-gases/logger"
 	"github.com/air-gases/redirector"
 	"github.com/aofei/air"
-	"github.com/goproxy/goproxy.cn/base"
-	"github.com/goproxy/goproxy.cn/handler"
+	"github.com/mayocream/goproxy-uni/base"
+	"github.com/mayocream/goproxy-uni/handler"
 )
 
 func main() {

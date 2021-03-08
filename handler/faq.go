@@ -12,8 +12,8 @@ import (
 
 	"github.com/aofei/air"
 	"github.com/fsnotify/fsnotify"
-	"github.com/goproxy/goproxy.cn/base"
-	"github.com/goproxy/goproxy.cn/model"
+	"github.com/mayocream/goproxy-uni/base"
+	"github.com/mayocream/goproxy-uni/model"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 )

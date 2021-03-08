@@ -13,7 +13,7 @@ import (
 
 	"github.com/aofei/air"
 	"github.com/goproxy/goproxy"
-	"github.com/goproxy/goproxy.cn/base"
+	"github.com/mayocream/goproxy-uni/base"
 	"github.com/tidwall/gjson"
 )
 
@@ -39,7 +39,7 @@ func init() {
 
 // hStatSummary handles requests to query stat summary.
 func hStatSummary(req *air.Request, res *air.Response) error {
-	cache, err := qiniuKodoCacher.Cache(req.Context, "stats/summary")
+	cache, err := diskCacher.Cache(req.Context, "stats/summary")
 	if err != nil {
 		return err
 	}
@@ -67,7 +67,7 @@ func hStatTrend(req *air.Request, res *air.Response) error {
 		return req.Air.NotFoundHandler(req, res)
 	}
 
-	cache, err := qiniuKodoCacher.Cache(
+	cache, err := diskCacher.Cache(
 		req.Context,
 		fmt.Sprint("stats/trends/", trend),
 	)
@@ -107,7 +107,7 @@ func hStat(req *air.Request, res *air.Response) error {
 		time.UTC,
 	)
 
-	cache, err := qiniuKodoCacher.Cache(
+	cache, err := diskCacher.Cache(
 		req.Context,
 		path.Join("stats", name),
 	)

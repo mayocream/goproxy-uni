@@ -1,4 +1,4 @@
-module github.com/goproxy/goproxy.cn
+module github.com/mayocream/goproxy-uni
 
 go 1.16
 

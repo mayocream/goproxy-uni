@@ -34,7 +34,7 @@ var (
 )
 
 func init() {
-	cf := pflag.StringP("config", "c", "config.toml", "configuration file")
+	cf := pflag.StringP("config", "c", "config.yaml", "configuration file")
 	pflag.Parse()
 
 	ext := filepath.Ext(*cf)

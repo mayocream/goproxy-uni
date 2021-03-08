@@ -9,28 +9,18 @@ import (
 
 	"github.com/air-gases/cacheman"
 	"github.com/aofei/air"
-	"github.com/goproxy/goproxy.cn/base"
 	"github.com/goproxy/goproxy/cacher"
+	"github.com/mayocream/goproxy-uni/base"
 	"github.com/robfig/cron/v3"
 	"github.com/tidwall/gjson"
 )
 
 var (
-	// qiniuViper is used to get the configuration items of the Qiniu Cloud.
-	qiniuViper = base.Viper.Sub("qiniu")
+	// cacheRoot is the path to store cache in disk
+	cacheRoot = base.Viper.GetString("cache.disk.root")
 
-	// qiniuAccessKey is the access key for the Qiniu Cloud.
-	qiniuAccessKey = qiniuViper.GetString("access_key")
-
-	// qiniuSecretKey is the secret key for the Qiniu Cloud.
-	qiniuSecretKey = qiniuViper.GetString("secret_key")
-
-	// qiniuKodoCacher is the kodo cacher for the Qiniu Cloud.
-	qiniuKodoCacher = &cacher.Kodo{
-		Endpoint:   qiniuViper.GetString("kodo_endpoint"),
-		AccessKey:  qiniuAccessKey,
-		SecretKey:  qiniuSecretKey,
-		BucketName: qiniuViper.GetString("kodo_bucket_name"),
+	diskCacher = &cacher.Disk{
+		Root: cacheRoot,
 	}
 
 	// getHeadMethods is an array contains the GET and HEAD methods.
@@ -122,7 +112,7 @@ func hIndexPage(req *air.Request, res *air.Response) error {
 
 // updateModuleVersionsCount updates the `moduleVersionCount`.
 func updateModuleVersionsCount() error {
-	cache, err := qiniuKodoCacher.Cache(base.Context, "stats/summary")
+	cache, err := diskCacher.Cache(base.Context, "stats/summary")
 	if err != nil {
 		return err
 	}
