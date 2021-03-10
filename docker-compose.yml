@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  gu:
+    image: "gu:test"
+    ports:
+    - "8989:8989"
+    environment:
+      GOPROXY: "https://goproxy.cn,direct"
+      GONOPROXY: "gitlab.oneitfarm.com/*"
+      GONOSUMDB: "gitlab.oneitfarm.com/*"
+      GOPRIVATE: "gitlab.oneitfarm.com"
+    volumes:
+    - "./.netrc:/gu/.netrc"
+    - "./config.test.yaml:/gu/config.yaml"

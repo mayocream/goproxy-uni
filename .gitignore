@@ -1,3 +1,7 @@
 # Bin
-/goproxy.cn
 .idea
+.env
+.stfolder/
+
+/config.test.yaml
+.netrc
